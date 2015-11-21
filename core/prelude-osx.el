@@ -67,7 +67,7 @@ Windows external keyboard from time to time."
 (menu-bar-mode +1)
 
 ;; Enable emoji, and stop the UI from freezing when trying to display them.
-(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
+;; (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
 
 (provide 'prelude-osx)
 ;;; prelude-osx.el ends here
