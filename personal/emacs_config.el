@@ -25,7 +25,6 @@
 ;; disable auto save
 (setq auto-save-default nil)
 
-
 ;;shift select
 (setq shift-select-mode t)
 
