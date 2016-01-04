@@ -6,10 +6,24 @@
 ;; prelude options                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
-(prelude-require-packages '(htmlize ido-vertical-mode ido-ubiquitous ess org))
+(prelude-require-packages '(ido-vertical-mode ido-ubiquitous org jedi))
+;; packages not required yet (moved out from the above list)
+;; (ess htmlize)
 
 ;;enable arrow keys
 (setq prelude-guru nil)
+
+;; disable whitespace mode
+(setq prelude-whitespace nil)
+
+;; disable electric indent
+(setq electric-indent-mode nil)
+
+;; disable highlight current line
+(setq global-hl-line-mode nil)
+
+;; disable auto save
+(setq auto-save-default nil)
 
 ;;shift select
 (setq shift-select-mode t)
@@ -21,13 +35,13 @@
 (setq  prelude-use-smooth-scrolling t)
 
 ;;turn off highlight long lines
-(setq whitespace-line-column 10000)
+;;(setq whitespace-line-column 99999)
 
 ;;uncomment this to use default theme
 ;;(disable-theme 'zenburn)
 
 ;;change highlight colour
-(set-face-attribute 'region t :background "#164040")
+;;(set-face-attribute 'region t :background "#164040")
 
 ;;turn off aggressive auto save
 (setq prelude-auto-save nil)
@@ -250,3 +264,27 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
    (if mark-active (list (region-beginning) (region-end))
      (list (line-beginning-position)
            (line-beginning-position 2)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; flake8 config for python ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(flycheck-define-checker python-flake8
+  "Custom python style checker - flake8 for ILM"
+  :command ("/sww/tools/bin/flake8" source)
+  :standard-input t
+  :error-patterns ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
+  :modes (python-mode))
+(add-hook 'python-mode-hook (lambda()
+                              (flycheck-select-checker 'python-flake8)
+                              (flycheck-mode)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; enable jedi auto complete for python-mode ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)                      ; optional
+(setq jedi:complete-on-dot t)                 ; optional
+
+(provide 'emacs_config)
+;;;
