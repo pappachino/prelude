@@ -6,6 +6,7 @@
 ;; prelude options                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
+
 (prelude-require-packages '(ido-vertical-mode ido-ubiquitous org jedi))
 ;; packages not required yet (moved out from the above list)
 ;; (ess htmlize)
@@ -35,6 +36,7 @@
 (setq  prelude-use-smooth-scrolling t)
 
 ;;turn off highlight long lines
+
 ;;(setq whitespace-line-column 99999)
 
 ;;uncomment this to use default theme
