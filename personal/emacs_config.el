@@ -6,7 +6,7 @@
 ;; prelude options                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
-(prelude-require-packages '(ido-vertical-mode ido-ubiquitous org jedi))
+(prelude-require-packages '(ess ido-vertical-mode ido-ubiquitous org jedi))
 ;; packages not required yet (moved out from the above list)
 ;; (ess htmlize)
 
