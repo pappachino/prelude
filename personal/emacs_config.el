@@ -7,6 +7,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
 (prelude-require-packages '(ess ido-vertical-mode ido-ubiquitous org jedi))
+
 ;; packages not required yet (moved out from the above list)
 ;; (ess htmlize)
 
@@ -271,12 +272,10 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (flycheck-define-checker python-flake8
   "Custom python style checker - flake8 for ILM"
-  
   :command ("/usr/local/bin/flake8" source)
   :standard-input t
   :error-patterns ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
   :modes (python-mode))
-
 (add-hook 'python-mode-hook (lambda()
                               (flycheck-select-checker 'python-flake8)
                               (flycheck-mode)))
