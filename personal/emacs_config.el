@@ -134,10 +134,21 @@
 (setq ispell-dictionary "british")
 (setq ispell-program-name "aspell")
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; fringe mode settings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; make both fringes 4 pixels wide
+(fringe-mode 4)
+
+;; make the left fringe 4 pixels wide and the right disappear
+(fringe-mode '(4 . 0))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; multiple cursors                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (global-set-key (kbd "C-c m c") 'mc/edit-lines)
+(global-set-key (kbd "C-c m c") 'mc/edit-lines)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; latex                                                                  ;;
@@ -274,9 +285,9 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
   :standard-input t
   :error-patterns ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
   :modes (python-mode))
-(add-hook 'python-mode-hook (lambda()
-                              (flycheck-select-checker 'python-flake8)
-                              (flycheck-mode)))
+;; (add-hook 'python-mode-hook (lambda()
+;;                               (flycheck-select-checker 'python-flake8)
+;;                               (flycheck-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -286,5 +297,37 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
 
+;; disable flycheck mode - lot of errors
+(global-flycheck-mode -1)
+(remove-hook 'prog-mode 'flycheck-mode)
+(remove-hook 'python-mode 'flycheck-mode)
+
+
+;;;;;;;;;;;;;;
+;; qml-mode ;;
+;;;;;;;;;;;;;;
+(require 'qml-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; define python mode interpreter ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist(cons '("python2" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2.6" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_nuke" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_zeno" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_maya" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_dpix" . python-mode)
+                                  interpreter-mode-alist))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Make sure this is the last line ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (provide 'emacs_config)
 ;;;
