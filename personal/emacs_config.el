@@ -6,12 +6,7 @@
 ;; prelude options                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
-<<<<<<< HEAD
-(prelude-require-packages '(ess ido-vertical-mode ido-ubiquitous org jedi))
-
-=======
 (prelude-require-packages '(ido-vertical-mode ido-ubiquitous org jedi))
->>>>>>> master
 ;; packages not required yet (moved out from the above list)
 ;; (ess htmlize)
 
@@ -139,13 +134,6 @@
 (setq ispell-dictionary "british")
 (setq ispell-program-name "aspell")
 
-<<<<<<< HEAD
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; multiple cursors                                                       ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (global-set-key (kbd "C-c m c") 'mc/edit-lines)
-=======
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; fringe mode settings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -160,7 +148,6 @@
 ;; multiple cursors                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-c m c") 'mc/edit-lines)
->>>>>>> master
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; latex                                                                  ;;
