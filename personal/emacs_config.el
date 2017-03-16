@@ -6,8 +6,12 @@
 ;; prelude options                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
+<<<<<<< HEAD
 (prelude-require-packages '(ess ido-vertical-mode ido-ubiquitous org jedi))
 
+=======
+(prelude-require-packages '(ido-vertical-mode ido-ubiquitous org jedi))
+>>>>>>> master
 ;; packages not required yet (moved out from the above list)
 ;; (ess htmlize)
 
@@ -135,10 +139,28 @@
 (setq ispell-dictionary "british")
 (setq ispell-program-name "aspell")
 
+<<<<<<< HEAD
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; multiple cursors                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (global-set-key (kbd "C-c m c") 'mc/edit-lines)
+=======
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; fringe mode settings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; make both fringes 4 pixels wide
+(fringe-mode 4)
+
+;; make the left fringe 4 pixels wide and the right disappear
+(fringe-mode '(4 . 0))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; multiple cursors                                                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-c m c") 'mc/edit-lines)
+>>>>>>> master
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; latex                                                                  ;;
@@ -266,7 +288,6 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flake8 config for python ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -287,5 +308,38 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
 
+
+;; disable flycheck mode - lot of errors
+(global-flycheck-mode -1)
+(remove-hook 'prog-mode 'flycheck-mode)
+(remove-hook 'python-mode 'flycheck-mode)
+
+
+;;;;;;;;;;;;;;
+;; qml-mode ;;
+;;;;;;;;;;;;;;
+(require 'qml-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; define python mode interpreter ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist(cons '("python2" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2.6" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_nuke" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_zeno" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_maya" . python-mode)
+                                  interpreter-mode-alist))
+(setq interpreter-mode-alist(cons '("python2_dpix" . python-mode)
+                                  interpreter-mode-alist))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Make sure this is the last line ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (provide 'emacs_config)
 ;;;

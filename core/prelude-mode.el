@@ -1,6 +1,6 @@
 ;;; prelude-mode.el --- Emacs Prelude: minor mode
 ;;
-;; Copyright © 2011-2016 Bozhidar Batsov
+;; Copyright © 2011-2017 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -66,6 +66,22 @@
     (define-key map (kbd "C-c TAB") 'crux-indent-rigidly-and-copy-to-clipboard)
     (define-key map (kbd "C-c I") 'crux-find-user-init-file)
     (define-key map (kbd "C-c S") 'crux-find-shell-init-file)
+    (define-key map (kbd "C-c n") 'prelude-cleanup-buffer-or-region)
+    (define-key map (kbd "C-c f")  'prelude-recentf-ido-find-file)
+    (define-key map (kbd "C-M-z") 'prelude-indent-defun)
+    (define-key map (kbd "C-c u") 'prelude-view-url)
+    (define-key map (kbd "C-c e") 'prelude-eval-and-replace)
+    (define-key map (kbd "C-c s") 'prelude-swap-windows)
+    (define-key map (kbd "C-c D") 'prelude-delete-file-and-buffer)
+    (define-key map (kbd "C-c d") 'prelude-duplicate-current-line-or-region)
+    (define-key map (kbd "C-c M-d") 'prelude-duplicate-and-comment-current-line-or-region)
+    (define-key map (kbd "C-c r") 'prelude-rename-buffer-and-file)
+    (define-key map (kbd "C-c t") 'prelude-visit-term-buffer)
+    (define-key map (kbd "C-c k") 'prelude-kill-other-buffers)
+    (define-key map (kbd "C-c TAB") 'prelude-indent-rigidly-and-copy-to-clipboard)
+    (define-key map (kbd "C-c I") 'prelude-find-user-init-file)
+    (define-key map (kbd "C-c S") 'prelude-find-shell-init-file)
+>>>>>>> Replace prelude-goto-symbol with imenu-anywhere
     (define-key map (kbd "C-c i") 'imenu-anywhere)
     ;; extra prefix for projectile
     (define-key map (kbd "s-p") 'projectile-command-map)
