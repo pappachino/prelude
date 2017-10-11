@@ -279,12 +279,20 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flake8 config for python ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(flycheck-define-checker python-flake8
+(flycheck-define-checker ilm-flake8
   "Custom python style checker - flake8 for ILM"
   :command ("/sww/tools/bin/flake8" source)
   :standard-input t
   :error-patterns ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
   :modes (python-mode))
+
+(flycheck-define-checker qi-flake8
+  "Custom python style checker - flake8 for Qi project"
+  :command ("flake8" source)
+  :standard-input t
+  :error-patterns ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
+  :modes (python-mode))
+
 ;; (add-hook 'python-mode-hook (lambda()
 ;;                               (flycheck-select-checker 'python-flake8)
 ;;                               (flycheck-mode)))
@@ -307,6 +315,7 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 ;; qml-mode ;;
 ;;;;;;;;;;;;;;
 (require 'qml-mode)
+(setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; define python mode interpreter ;;
