@@ -81,7 +81,7 @@
     (define-key map (kbd "C-c TAB") 'prelude-indent-rigidly-and-copy-to-clipboard)
     (define-key map (kbd "C-c I") 'prelude-find-user-init-file)
     (define-key map (kbd "C-c S") 'prelude-find-shell-init-file)
->>>>>>> Replace prelude-goto-symbol with imenu-anywhere
+    ;;>>>>>>> Replace prelude-goto-symbol with imenu-anywhere
     (define-key map (kbd "C-c i") 'imenu-anywhere)
     ;; extra prefix for projectile
     (define-key map (kbd "s-p") 'projectile-command-map)
