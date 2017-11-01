@@ -288,7 +288,7 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 
 (flycheck-define-checker qi-flake8
   "Custom python style checker - flake8 for Qi project"
-  :command ("flake8" source)
+  :command ("/dept/pe/sijok/dev/work/env/bin/flake8" source)
   :standard-input t
   :error-patterns ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
   :modes (python-mode))
@@ -340,7 +340,7 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 ;; from http://irreal.org/blog/?p=374                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun bjm-comment-box (b e)
-"Draw a box comment around the region but arrange for the region to extend 
+"Draw a box comment around the region but arrange for the region to extend
 to at least the fill column. Place the point after the comment box."
 
 (interactive "r")
@@ -352,6 +352,21 @@ to at least the fill column. Place the point after the comment box."
   (comment-box b e 1)
   (goto-char e)
   (set-marker e nil)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; SQL mode indent                                                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defcustom sql-tab-stop-list
+  '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
+  "List of tab stop positions used by `tab-to-tab-stop' in SQL."
+  :group 'SQL)
+
+(defun local-sql-indent ()
+  (setq tab-stop-list sql-tab-stop-list)
+  (setq indent-tabs-mode nil)
+  (setq indent-line-function `tab-to-tab-stop))
+(add-hook 'sql-mode-hook 'local-sql-indent)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Make sure this is the last line ;;
