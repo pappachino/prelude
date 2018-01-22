@@ -367,6 +367,7 @@ to at least the fill column. Place the point after the comment box."
   (setq indent-tabs-mode nil)
   (setq indent-line-function `tab-to-tab-stop))
 (add-hook 'sql-mode-hook 'local-sql-indent)
+(add-hook 'conf-mode-hook 'local-sql-indent)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Make sure this is the last line ;;
