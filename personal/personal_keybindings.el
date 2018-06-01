@@ -18,7 +18,7 @@
 (global-set-key [(shift f6)] 'winner-redo)
 
 ;; look up for a symbol
-(global-set-key [f6] 'prelude-goto-symbol)
+(global-set-key [f6] 'jedi:goto-definition)
 
 ;; delete file and buffer window
 (global-set-key [f7] 'delete-window)
