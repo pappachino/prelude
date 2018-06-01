@@ -6,7 +6,7 @@
 ;; prelude options                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
-(prelude-require-packages '(ido-vertical-mode ido-ubiquitous org jedi))
+(prelude-require-packages '(ido-vertical-mode ido-completing-read+ org jedi))
 ;; packages not required yet (moved out from the above list)
 ;; (ess htmlize)
 
@@ -181,7 +181,7 @@
 ;; when using ido, the confirmation is rather annoying...
 (setq confirm-nonexistent-file-or-buffer nil)
 ;; Use ido everywhere
-(require 'ido-ubiquitous)
+(require 'ido-completing-read+)
 (ido-ubiquitous-mode 1)
 ;;set file order
 (setq ido-file-extensions-order '(".org" ".tex" ".txt" ".dat"))
@@ -368,6 +368,7 @@ to at least the fill column. Place the point after the comment box."
   (setq indent-line-function `tab-to-tab-stop))
 (add-hook 'sql-mode-hook 'local-sql-indent)
 (add-hook 'conf-mode-hook 'local-sql-indent)
+(add-hook 'groovy-mode-hook 'local-sql-indent)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Make sure this is the last line ;;
