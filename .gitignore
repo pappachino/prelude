@@ -24,4 +24,4 @@ tramp
 .emacs.desktop.lock
 .python-environments/
 ac-comphist.dat
-
+tmp*
