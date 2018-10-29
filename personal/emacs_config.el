@@ -6,7 +6,7 @@
 ;; prelude options                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;install additional packages
-(prelude-require-packages '(ido-vertical-mode ido-completing-read+ org jedi))
+(prelude-require-packages '(ido-vertical-mode ido-completing-read+ org jedi isortify blacken))
 ;; packages not required yet (moved out from the above list)
 ;; (ess htmlize)
 
@@ -56,7 +56,6 @@
 
 ;; set smart-mode-line theme as dark
 (setq sml/theme 'dark)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; save buffers for next startup                                          ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -116,7 +115,7 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
-   (sh . t)
+   (shell . t)
    (python . t)
    (R . t)
    (perl . t)
@@ -176,6 +175,7 @@
 ;;;;;;;;;
 (require 'ido-vertical-mode)
 (ido-mode 1)
+(ido-everywhere 1)
 (ido-vertical-mode 1)
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
 ;; when using ido, the confirmation is rather annoying...
@@ -288,7 +288,7 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 
 (flycheck-define-checker qi-flake8
   "Custom python style checker - flake8 for Qi project"
-  :command ("/dept/pe/sijok/dev/work/env/bin/flake8" source)
+  :command ("flake8" source)
   :standard-input t
   :error-patterns ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
   :modes (python-mode))
@@ -310,12 +310,20 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 (remove-hook 'prog-mode 'flycheck-mode)
 (remove-hook 'python-mode 'flycheck-mode)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; enable styling for python-mode ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; - enable black on save for python
+(add-hook 'python-mode-hook 'blacken-mode)
+;; - enable isort on save for python
+(add-hook 'python-mode-hook 'isortify-mode)
 
 ;;;;;;;;;;;;;;
 ;; qml-mode ;;
 ;;;;;;;;;;;;;;
 (require 'qml-mode)
 (setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; define python mode interpreter ;;
@@ -353,6 +361,14 @@ to at least the fill column. Place the point after the comment box."
   (goto-char e)
   (set-marker e nil)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; Python mode indent ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'python-mode-hook
+      (lambda ()
+        (setq indent-tabs-mode nil)
+        (setq tab-width 4)
+        (setq python-indent-offset 4)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SQL mode indent                                                        ;;
